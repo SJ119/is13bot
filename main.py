@@ -20,11 +20,12 @@ def incoming():
     messages = messages_from_json(request.json['messages'])
 
     for message in messages:
+            print message.body
             body = ''
-            if message['type'] == 'start-chatting':
+            if message.type and message.type == 'start-chatting':
                 body = 'Hello {0}, give me an input and I will tell you if it\'s 13'.format(message['from'])
-            elif isinstance(message, TextMessage) or (message['mention'] == 'is13bot'):
-                message_body = message['body'].lower()
+            elif isinstance(message, TextMessage) or (message.mention and message.mention == 'is13bot'):
+                message_body = message.body.lower()
                 if message_body == 'thirteen' or message_body == '13' or message_body == ('1101'):
                     body = random.choice(IS13).format(input=message_body)
                 else:
@@ -38,7 +39,7 @@ def incoming():
                 )
             ])
 
-    return Response(status=200)
+            return Response(status=200)
 
 if __name__ == "__main__":
     app.run(port=8080, debug=True)
