@@ -2,12 +2,11 @@ import random
 import os
 from flask import Flask, request, Response
 
-from key import API_KEY
 from kik import KikApi
 from kik.messages import messages_from_json, TextMessage
 
 app = Flask(__name__)
-kik = KikApi('is13bot', API_KEY)
+kik = KikApi('is13bot', os.environ.get("API_KEY", 'FAKE_KEY'))
 
 IS13 = ['Indeed your number is 13', '{input} == 13', 'Congratulations! You entered 13']
 ISNOT13 = ['Your number is not 13', '{input} != 13', 'Unfortunately that was not 13']
