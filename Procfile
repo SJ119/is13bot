@@ -1,2 +1,2 @@
-web: gunicorn is13bot.wsgi --log-file -
+web: python runserver.py 8080
 
