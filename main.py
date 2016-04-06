@@ -1,4 +1,5 @@
 import random
+import os
 from flask import Flask, request, Response
 
 from key import API_KEY
@@ -41,6 +42,7 @@ def incoming():
 
             return Response(status=200)
 
+port = int(os.environ.get("PORT", 5000))
 if __name__ == "__main__":
-    app.run(port=8080, debug=True)
+    app.run(port=port, debug=True)
 

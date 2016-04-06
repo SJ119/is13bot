@@ -1,2 +1,2 @@
-web: python runserver.py 8080
+web: python runserver.py $PORT
 
